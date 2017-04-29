@@ -1,7 +1,8 @@
 var gulp   = require('gulp')
 var eslint = require('gulp-eslint')
-var open   = require('gulp-open')
 var babel  = require('gulp-babel')
+var cache  = require('gulp-cache')
+var open   = require('gulp-open')
 
 gulp.task('eslint', function() {
   return gulp.src(['scripts/*.es6', '!node_modules/**'])
@@ -24,11 +25,16 @@ gulp.task('babelify', function() {
     .pipe(gulp.dest('dist'))
 })
 
+gulp.task('clear-cache', function() {
+  gulp.src('./dist/app.js')
+    .pipe(cache.clear())
+})
+
 gulp.task('open', function() {
   gulp.src('./index.html')
     .pipe(open({app: 'chrome', uri: './index.html'}))
 })
 
-gulp.task('serve', ['eslint', 'babelify', 'open'], function() {
+gulp.task('serve', ['eslint', 'babelify', 'clear-cache', 'open'], function() {
   console.log('Build task here...')
 })

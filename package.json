@@ -22,6 +22,7 @@
     "babel-preset-es2015": "^6.24.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-cache": "^0.4.6",
     "gulp-eslint": "^3.0.1",
     "gulp-open": "^2.0.0"
   },
